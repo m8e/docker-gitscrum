@@ -4,13 +4,15 @@ LABEL maintainer "Renato Marinho <renato.marinho@s2move.com>"
 
 RUN apt-get update
 
-RUN apt-get install -y npm \
+RUN apt-get install -y \
 	git \
+    libz-dev \
 	libcurl4-gnutls-dev \
 	libmcrypt-dev  \
 	libicu-dev \
     zip \
     unzip \
+    gnupg \
 	&& docker-php-ext-install pdo_mysql \
 	&& docker-php-ext-install iconv \
 	&& docker-php-ext-install mcrypt \
@@ -22,9 +24,9 @@ RUN apt-get install -y npm \
 
 
 # Install nodejs
-RUN apt-get install -y python-software-properties
+RUN apt-get install -y software-properties-common
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
-RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs npm
 RUN npm install --global gulp gulp-cli
 
 # Install xdebug
